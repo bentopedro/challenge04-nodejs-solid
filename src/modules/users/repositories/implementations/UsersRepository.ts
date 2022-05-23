@@ -47,19 +47,14 @@ class UsersRepository implements IUsersRepository {
     }
 
     turnAdmin(receivedUser: User): User {
-        const confirmedUser = this.users.find(
-            (user) => user.id === receivedUser.id
-        );
-        // const confirmedUser = this.findById(receivedUser.id);
+        const updateUser = Object.assign(receivedUser, {
+            admin: true,
+            updated_at: new Date(),
+        });
 
-        if (!confirmedUser) {
-            throw new Error("User isn't confirmed");
-        }
+        this.users.push(updateUser);
 
-        confirmedUser.admin = true;
-        confirmedUser.updated_at = new Date();
-
-        return confirmedUser;
+        return updateUser;
     }
 
     list(): User[] {
