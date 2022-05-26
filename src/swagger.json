@@ -30,8 +30,8 @@
                                     }
                                 },
                                 "examples":{
-                                    "name":"Username",
-                                    "description":"Email address"
+                                    "name":"johndoe",
+                                    "description":"johndoe@examples.com"
                                 }
                             }
                         }
@@ -43,6 +43,160 @@
                     },
                     "500":{
                         "description": "User could not be created"
+                    }
+                }
+            },
+            "get":{
+                "tags":["Users"],
+                "summary": "Get all users account",
+                "description":"List all users accounts",
+                "parameters":[
+                    {
+                        "name":"user_id",
+                        "in":"header",
+                        "description":"Id do usuário",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success",
+                        "content": {
+                            "application/json":{
+                                "schema":{                                    
+                                    "type": "object",
+                                        "properties":{
+                                            "id":{
+                                                "type": "string"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "email":{
+                                                "type": "string"
+                                            },
+                                            "admin":{
+                                                "type": "boolean"
+                                            },
+                                            "created_at":{
+                                                "type": "string"
+                                            },
+                                            "updated_at":{
+                                                "type": "string"
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "User not found"
+                    }
+                }
+            }           
+        },
+        "/users/{userId}":{            
+            "get": {
+                "tags": ["Users"],
+                "summary": "Shou User Profile",
+                "description": "Show user account profile",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "description": "Id do usuário",
+                      "required": true,
+                      "format": "uuid"
+                    }
+                  ],
+                "responses": {
+                    "200":{
+                        "description": "Success",
+                        "content": {
+                            "application/json":{
+                                "schema":{                                    
+                                    "type": "object",
+                                        "properties":{
+                                            "id":{
+                                                "type": "string"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "email":{
+                                                "type": "string"
+                                            },
+                                            "admin":{
+                                                "type": "boolean"
+                                            },
+                                            "created_at":{
+                                                "type": "string"
+                                            },
+                                            "updated_at":{
+                                                "type": "string"
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "User not found"
+                    }
+                }
+                
+            }
+        },
+        "/users/{userId}/admin": {
+            "patch":{
+                "tags":["Users"],
+                "summary":"Turn on user admin",
+                "description":"Turn a user account to admin",
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "description": "Id do usuário",
+                      "required": true,
+                      "format": "uuid"
+                    }
+                  ],
+                  "responses": {
+                    "200":{
+                        "description": "Success",
+                        "content": {
+                            "application/json":{
+                                "schema":{                                    
+                                    "type": "object",
+                                        "properties":{
+                                            "id":{
+                                                "type": "string"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "email":{
+                                                "type": "string"
+                                            },
+                                            "admin":{
+                                                "type": "boolean"
+                                            },
+                                            "created_at":{
+                                                "type": "string"
+                                            },
+                                            "updated_at":{
+                                                "type": "string"
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "User not found"
                     }
                 }
             }
